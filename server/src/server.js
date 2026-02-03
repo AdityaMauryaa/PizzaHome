@@ -22,7 +22,7 @@ import errorHandler from "./utils/errorHandler.js";
 
 // Init app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // ---------- Global Middleware ----------
 const corsOptions = {
@@ -55,8 +55,7 @@ app.use(cookieParser());
 app.use(logger);
 
 // ---------- DB ----------
-connectDB();
-
+connectDB();    
 // ---------- Public Routes (No API Key Required) ----------
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
@@ -78,6 +77,6 @@ app.get("/", (req, res) => {
 app.use(errorHandler);
 
 // ---------- Server ----------
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`✅ Server is running on port ${port}`);
 });
