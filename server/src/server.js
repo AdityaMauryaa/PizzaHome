@@ -56,14 +56,15 @@ app.use(logger);
 
 // ---------- DB ----------
 connectDB();
-// ---------- Public Routes ----------
+
+// ---------- Public Routes (No API Key Required) ----------
 app.use("/api/auth", authRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/products", productRoutes);
 
 // ---------- API Key Protected Routes ----------
 app.use("/api", apiKeyMiddleware);
 
-app.use("/api/products", productRoutes);
-app.use("/api/categories", categoryRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/inventory", inventoryRoutes);

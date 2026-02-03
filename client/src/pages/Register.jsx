@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { User, Mail, Lock, Pizza, ArrowRight, UserPlus } from "lucide-react";
 
 export default function Register() {
   const { register } = useAuth();
@@ -10,45 +11,134 @@ export default function Register() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await register(form);
-    navigate("/");
+    setLoading(true);
+    try {
+      await register(form);
+      navigate("/");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-lg shadow w-96"
-      >
-        <h2 className="text-xl font-bold mb-4">Register</h2>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 flex items-center justify-center px-6 py-12">
+      <div className="max-w-md w-full">
+        {/* Logo and Header */}
+        <div className="text-center mb-8 animate-fade-in">
+          <div className="flex justify-center mb-4">
+            <div className="bg-gradient-to-r from-red-500 to-orange-500 p-4 rounded-full shadow-lg">
+              <Pizza className="w-12 h-12 text-white" />
+            </div>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-2">Join PizzaHub!</h1>
+          <p className="text-gray-600">Create an account to start ordering</p>
+        </div>
 
-        <input
-          placeholder="Name"
-          className="w-full mb-3 p-2 border rounded"
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
+        {/* Register Form */}
+        <div className="bg-white rounded-3xl shadow-2xl p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Name Input */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Full Name
+              </label>
+              <div className="relative">
+                <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  required
+                  value={form.name}
+                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:outline-none transition-all"
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+              </div>
+            </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full mb-3 p-2 border rounded"
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+            {/* Email Input */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  value={form.email}
+                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:outline-none transition-all"
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+              </div>
+            </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full mb-4 p-2 border rounded"
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
+            {/* Password Input */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Password
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <input
+                  type="password"
+                  placeholder="Create a password"
+                  required
+                  value={form.password}
+                  minLength={6}
+                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-500 focus:outline-none transition-all"
+                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                />
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
+            </div>
 
-        <button className="w-full bg-red-500 text-white py-2 rounded">
-          Register
-        </button>
-      </form>
+            {/* Register Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-4 rounded-xl font-bold text-lg hover:from-red-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              ) : (
+                <>
+                  <UserPlus size={20} /> Create Account
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Login Link */}
+          <div className="mt-6 text-center">
+            <p className="text-gray-600">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-red-600 font-semibold hover:text-orange-500 transition-colors"
+              >
+                Login here
+              </Link>
+            </p>
+          </div>
+        </div>
+
+        {/* Back to Home */}
+        <div className="text-center mt-6">
+          <Link
+            to="/"
+            className="text-gray-600 hover:text-gray-800 transition-colors inline-flex items-center gap-2"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
