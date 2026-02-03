@@ -107,46 +107,51 @@ Pizza-h/
 ### 6. Inventory Management
 
 #### 6.1 Create Controller (`/server/src/controller/inventoryController.js`)
-- [ ] Get inventory status
-- [ ] Update inventory
-- [ ] Check stock availability
+- [x] Get inventory status
+- [x] Update inventory
+- [x] Check stock availability
 
 #### 6.2 Business Logic
-- [ ] Real-time stock tracking
-- [ ] Automatic inventory updates on order
-- [ ] Stock validation before order confirmation
-- [ ] Prevent orders for out-of-stock items
+- [x] Real-time stock tracking
+- [x] Automatic inventory updates on order
+- [x] Stock validation before order confirmation
+- [x] Prevent orders for out-of-stock items
+
+#### 6.3 Create Routes (`/server/src/routes/inventoryRoutes.js`)
+- [x] GET /api/inventory - Get inventory status
+- [x] PUT /api/inventory/:productId - Update inventory for a product
+- [x] GET /api/inventory/check/:productId - Check stock availability for a product
 
 ### 7. API Security & Middleware
 
 #### 7.1 Create Middleware (`/server/src/utils/`)
-- [ ] **apiKeyMiddleware.js** - Validate x-api-key header
-- [ ] **errorHandler.js** - Centralized error handler
-- [ ] **logger.js** - Request logging
+- [x] **apiKeyMiddleware.js** - Validate x-api-key header
+- [x] **errorHandler.js** - Centralized error handler
+- [x] **logger.js** - Request logging
 
 #### 7.2 Security Features
-- [ ] API key validation on all routes
-- [ ] Return 401 for unauthorized requests
-- [ ] Handle out-of-stock errors
-- [ ] Handle invalid request errors
+- [x] API key validation on all routes
+- [x] Return 401 for unauthorized requests
+- [x] Handle out-of-stock errors
+- [x] Handle invalid request errors
 
 ### 8. Register Routes in Server.js
-- [ ] Import and use authRoutes
-- [ ] Import and use productRoutes
-- [ ] Import and use categoryRoutes
-- [ ] Import and use cartRoutes
-- [ ] Import and use orderRoutes
-- [ ] Add error handling middleware
-- [ ] Add API key middleware
+- [x] Import and use authRoutes
+- [x] Import and use productRoutes
+- [x] Import and use categoryRoutes
+- [x] Import and use cartRoutes
+- [x] Import and use orderRoutes
+- [x] Add error handling middleware
+- [x] Add API key middleware
 
 ---
 
 ## Frontend Tasks (in `/client/`)
 
 ### 9. Setup React Project
-- [ ] Initialize React app (Vite or CRA)
-- [ ] Install dependencies (axios, react-router-dom, etc.)
-- [ ] Setup folder structure (components, pages, services, context)
+- [x] Initialize React app (Vite or CRA)
+- [x] Install dependencies (axios, react-router-dom, etc.)
+- [x] Setup folder structure (components, pages, services, context)
 
 ### 10. Build Frontend - Menu Display
 - [ ] Create Navbar component
