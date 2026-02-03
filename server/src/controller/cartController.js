@@ -73,6 +73,20 @@ export const getCart = async (req, res, next) => {
       return res.status(200).json({ items: [], totalAmount: 0 });
     }
 
+    // Filter out items with null/deleted products
+    cart.items = cart.items.filter(item => item.product != null);
+    
+    // Recalculate total
+    cart.totalAmount = cart.items.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+
+    // Save cleaned cart if items were removed
+    if (cart.isModified()) {
+      await cart.save();
+    }
+
     res.status(200).json(cart);
   } catch (error) {
     next(error);

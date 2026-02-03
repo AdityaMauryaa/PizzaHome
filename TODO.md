@@ -154,42 +154,42 @@ Pizza-h/
 - [x] Setup folder structure (components, pages, services, context)
 
 ### 10. Build Frontend - Menu Display
-- [ ] Create Navbar component
-- [ ] Create category navigation component
-- [ ] Create product card component
-- [ ] Create product listing page
-- [ ] Display product name, price, availability
-- [ ] Style menu cards
+- [x] Create Navbar component
+- [x] Create category navigation component
+- [x] Create product card component
+- [x] Create product listing page
+- [x] Display product name, price, availability
+- [x] Style menu cards
 
 ### 11. Build Frontend - Cart UI
-- [ ] Create CartContext for state management
-- [ ] Create shopping cart component
-- [ ] Add quantity controls (+/-)
-- [ ] Display individual prices
-- [ ] Calculate and display total amount
-- [ ] Remove item functionality
+- [x] Create CartContext for state management
+- [x] Create shopping cart component
+- [x] Add quantity controls (+/-)
+- [x] Display individual prices
+- [x] Calculate and display total amount
+- [x] Remove item functionality
 
 ### 12. Build Frontend - User Auth
-- [ ] Create Login page
-- [ ] Create Register page
-- [ ] Create Profile page
-- [ ] Store JWT in localStorage/cookies
+- [x] Create Login page
+- [x] Create Register page
+- [x] Create Profile page
+- [x] Store JWT in localStorage/cookies
 
 ### 13. Build Frontend - Order Confirmation
-- [ ] Create checkout page
-- [ ] Create order placement button
-- [ ] Show loading state during order
-- [ ] Create order confirmation page
-- [ ] Display order reference number
-- [ ] Show order summary
+- [x] Create checkout page
+- [x] Create order placement button
+- [x] Show loading state during order
+- [x] Create order confirmation page
+- [x] Display order reference number
+- [x] Show order summary
 
 ### 14. API Integration
-- [ ] Create API service (`/client/src/services/api.js`)
-- [ ] Configure axios with base URL and x-api-key header
-- [ ] Create auth service
-- [ ] Create product service
-- [ ] Create cart service
-- [ ] Create order service
+- [x] Create API service (`/client/src/services/api.js`)
+- [x] Configure axios with base URL and x-api-key header
+- [x] Create auth service
+- [x] Create product service
+- [x] Create cart service
+- [x] Create order service
 
 ---
 

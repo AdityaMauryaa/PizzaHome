@@ -55,14 +55,19 @@ export const getProductById = async (req, res, next) => {
 
 /**
  * @desc    Get products by category
- * @route   GET /api/products/category/:category
+ * @route   GET /api/products/category/:categoryId
  */
 export const getProductsByCategory = async (req, res, next) => {
   try {
+    const categoryName = req.params.categoryId;
+    console.log("Fetching products for category:", categoryName);
+    
+    // Case-insensitive search
     const products = await Product.find({
-      category: req.params.category,
+      category: { $regex: new RegExp(`^${categoryName}$`, 'i') }
     });
 
+    console.log("Found products:", products.length);
     res.status(200).json(products);
   } catch (error) {
     next(error);
