@@ -22,7 +22,7 @@ import errorHandler from "./utils/errorHandler.js";
 
 // Init app
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT   = process.env.PORT || 3000;
 
 // ---------- Global Middleware ----------
 const corsOptions = {
@@ -62,6 +62,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 
 // ---------- API Key Protected Routes ----------
+app.use(errorHandler);
 app.use("/api", apiKeyMiddleware);
 
 app.use("/api/cart", cartRoutes);
@@ -74,9 +75,8 @@ app.get("/", (req, res) => {
 });
 
 // ---------- Error Handler (LAST) ----------
-app.use(errorHandler);
 
 // ---------- Server ----------
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });
