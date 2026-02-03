@@ -1,4 +1,8 @@
 const errorHandler = (err, req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
   console.error(err.stack);
 
   const statusCode = err.statusCode || 500;
@@ -10,5 +14,3 @@ const errorHandler = (err, req, res, next) => {
     }),
   });
 };
-
-export default errorHandler;

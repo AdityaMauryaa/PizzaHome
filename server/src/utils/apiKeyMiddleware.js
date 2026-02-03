@@ -6,7 +6,6 @@ const apiKeyMiddleware = (req, res, next) => {
       message: "Invalid or missing API key",
     });
   }
-
   next();
 };
 
