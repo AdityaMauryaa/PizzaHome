@@ -18,7 +18,6 @@ import inventoryRoutes from "./routes/inventoryRoutes.js";
 
 // ---------- Middleware ----------
 import logger from "./utils/logger.js";
-import apiKeyMiddleware from "./utils/apiKeyMiddleware.js";
 import errorHandler from "./utils/errorHandler.js";
 
 // ---------- App ----------
@@ -32,15 +31,20 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 
 const corsOptions = {
   origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
+    
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
-    return callback(null, false); // ❌ never throw
+    
+    // Log rejected origins for debugging
+    console.warn(`CORS blocked origin: ${origin}`);
+    return callback(new Error(`Origin ${origin} not allowed by CORS`));
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "x-api-key"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));
@@ -72,9 +76,9 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 
 // ---------- Protected Routes ----------
-app.use("/api/cart", apiKeyMiddleware, cartRoutes);
-app.use("/api/orders", apiKeyMiddleware, orderRoutes);
-app.use("/api/inventory", apiKeyMiddleware, inventoryRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/inventory", inventoryRoutes);
 
 // ---------- Health ----------
 app.get("/", (req, res) => {

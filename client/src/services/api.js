@@ -5,7 +5,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Attach JWT + API Key on every request
+// Attach JWT token on every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 
@@ -13,7 +13,6 @@ api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${token}`;
   }
 
-  config.headers["x-api-key"] = import.meta.env.VITE_API_KEY;
   return config;
 });
 

@@ -14,7 +14,8 @@ export default function Orders() {
   const fetchOrders = async () => {
     try {
       const res = await api.get("/orders");
-      setOrders(res.data.orders || res.data || []);
+      setOrders(res.data || []);
+      console.log("ordershere", orders);
     } catch (error) {
       console.error("Failed to fetch orders", error);
     } finally {
@@ -112,7 +113,7 @@ export default function Orders() {
                 <div className="border-t mt-4 pt-4 flex justify-between items-center">
                   <span className="text-lg font-bold text-gray-700">Total</span>
                   <span className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                    ₹{order.totalAmount}
+                    ₹{order.total}
                   </span>
                 </div>
               </div>
