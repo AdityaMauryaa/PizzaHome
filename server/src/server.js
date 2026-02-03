@@ -72,10 +72,9 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
 
 // ---------- Protected Routes ----------
-app.use("/api", apiKeyMiddleware);
-app.use("/api/cart", cartRoutes);
-app.use("/api/orders", orderRoutes);
-app.use("/api/inventory", inventoryRoutes);
+app.use("/api/cart", apiKeyMiddleware, cartRoutes);
+app.use("/api/orders", apiKeyMiddleware, orderRoutes);
+app.use("/api/inventory", apiKeyMiddleware, inventoryRoutes);
 
 // ---------- Health ----------
 app.get("/", (req, res) => {
