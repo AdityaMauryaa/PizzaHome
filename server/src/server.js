@@ -5,10 +5,10 @@ import cookieParser from "cookie-parser";
 
 dotenv.config();
 
-// DB
+// ---------- DB ----------
 import connectDB from "./db/db.js";
 
-// Routes
+// ---------- Routes ----------
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
@@ -16,11 +16,12 @@ import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import inventoryRoutes from "./routes/inventoryRoutes.js";
 
-// Middleware
+// ---------- Middleware ----------
 import logger from "./utils/logger.js";
 import apiKeyMiddleware from "./utils/apiKeyMiddleware.js";
 import errorHandler from "./utils/errorHandler.js";
 
+// ---------- App ----------
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -35,7 +36,7 @@ const corsOptions = {
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
-    return callback(null, false); // NEVER throw
+    return callback(null, false); // ❌ never throw
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
@@ -43,9 +44,20 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // 🔥 REQUIRED
 
-// ---------- Body & cookies ----------
+/**
+ * 🔥 EXPRESS 5 SAFE OPTIONS HANDLER
+ * - Required for CORS preflight
+ * - Must come BEFORE routes & auth
+ */
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+// ---------- Body & Cookies ----------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -70,7 +82,7 @@ app.get("/", (req, res) => {
   res.send("🚀 Pizza Ordering API is running");
 });
 
-// ---------- Error Handler (ABSOLUTE LAST) ----------
+// ---------- Error Handler (ALWAYS LAST) ----------
 app.use(errorHandler);
 
 // ---------- Server ----------
