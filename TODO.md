@@ -43,66 +43,66 @@ Pizza-h/
 ### 2. User Authentication APIs
 
 #### 2.1 Create Auth Controller (`/server/src/controller/authController.js`)
-- [ ] Register user function
-- [ ] Login user function
-- [ ] Get profile function
-- [ ] Update profile function
+- [x] Register user function
+- [x] Login user function
+- [x] Get profile function
+- [x] Update profile function
 
 #### 2.2 Create Auth Routes (`/server/src/routes/authRoutes.js`)
-- [ ] POST /api/auth/register - User registration
-- [ ] POST /api/auth/login - User login
-- [ ] GET /api/auth/profile - Get user profile
-- [ ] PUT /api/auth/profile - Update user profile
+- [x] POST /api/auth/register - User registration
+- [x] POST /api/auth/login - User login
+- [x] GET /api/auth/profile - Get user profile
+- [x] PUT /api/auth/profile - Update user profile
 
 #### 2.3 Auth Utilities (`/server/src/utils/`)
-- [ ] **authMiddleware.js** - JWT verification middleware
-- [ ] Password hashing with bcrypt
-- [ ] JWT token generation
+- [x] **authMiddleware.js** - JWT verification middleware
+- [x] Password hashing with bcrypt
+- [x] JWT token generation
 
 ### 3. Product & Category APIs
 
 #### 3.1 Create Controllers (`/server/src/controller/`)
-- [ ] **productController.js** - CRUD for products
-- [ ] **categoryController.js** - CRUD for categories
+- [x] **productController.js** - CRUD for products
+- [x] **categoryController.js** - CRUD for categories
 
 #### 3.2 Create Routes (`/server/src/routes/`)
-- [ ] **productRoutes.js**
-  - [ ] GET /api/products - Fetch all products
-  - [ ] GET /api/products/:categoryId - Fetch products by category
-  - [ ] GET /api/products/:id - Fetch single product
-- [ ] **categoryRoutes.js**
-  - [ ] GET /api/categories - Fetch all categories
+- [x] **productRoutes.js**
+  - [x] GET /api/products - Fetch all products
+  - [x] GET /api/products/:categoryId - Fetch products by category
+  - [x] GET /api/products/:id - Fetch single product
+- [x] **categoryRoutes.js**
+  - [x] GET /api/categories - Fetch all categories
 
 ### 4. Cart Management APIs
 
 #### 4.1 Create Controller (`/server/src/controller/cartController.js`)
-- [ ] Add item to cart
-- [ ] Get cart items
-- [ ] Update item quantity
-- [ ] Remove item from cart
-- [ ] Clear cart
+- [] Add item to cart
+- [x] Get cart items
+- [x] Update item quantity
+- [x] Remove item from cart
+- [x] Clear cart
 
 #### 4.2 Create Routes (`/server/src/routes/cartRoutes.js`)
-- [ ] POST /api/cart - Add item to cart
-- [ ] GET /api/cart - Get cart items
-- [ ] PUT /api/cart/:itemId - Update item quantity
-- [ ] DELETE /api/cart/:itemId - Remove item from cart
-- [ ] DELETE /api/cart - Clear cart
+- [x] POST /api/cart - Add item to cart
+- [x] GET /api/cart - Get cart items
+- [x] PUT /api/cart/:itemId - Update item quantity
+- [x] DELETE /api/cart/:itemId - Remove item from cart
+- [x] DELETE /api/cart - Clear cart
 
 ### 5. Order Placement API
 
 #### 5.1 Create Controller (`/server/src/controller/orderController.js`)
-- [ ] Place order function
-- [ ] Validate stock availability
-- [ ] Deduct inventory on order
-- [ ] Generate order reference number
-- [ ] Get order details
-- [ ] Get user orders
+- [x] Place order function
+- [x] Validate stock availability
+- [x] Deduct inventory on order
+- [x] Generate order reference number
+- [x] Get order details
+- [x] Get user orders
 
 #### 5.2 Create Routes (`/server/src/routes/orderRoutes.js`)
-- [ ] POST /api/orders - Place order
-- [ ] GET /api/orders - Get user orders
-- [ ] GET /api/orders/:orderId - Get order details
+- [x] POST /api/orders - Place order
+- [x] GET /api/orders - Get user orders
+- [x] GET /api/orders/:orderId - Get order details
 
 ### 6. Inventory Management
 
