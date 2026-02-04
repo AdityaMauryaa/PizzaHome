@@ -49,9 +49,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use(cors(corsOptions));
-
 /**
  * 🔥 EXPRESS 5 SAFE OPTIONS HANDLER
  * - Required for CORS preflight
