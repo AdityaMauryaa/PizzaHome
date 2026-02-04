@@ -47,10 +47,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-// ✅ Let cors handle OPTIONS correctly
-app.options("/api/*", cors(corsOptions));
-
-// ✅ Apply CORS ONLY to API routes
+// ✅ Apply CORS only to API routes
 app.use("/api", cors(corsOptions));
 
 
