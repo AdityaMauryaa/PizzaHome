@@ -31,35 +31,28 @@ const allowedOrigins = [
   "http://localhost:5173",
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // allow server-side tools (Postman, curl)
-      if (!origin) return callback(null, true);
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
 
-      console.warn("CORS blocked origin:", origin);
-      callback(new Error("Not allowed by CORS"));
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-/**
- * 🔥 EXPRESS 5 SAFE OPTIONS HANDLER
- * - Required for CORS preflight
- * - Must come BEFORE routes & auth
- */
-app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+    console.warn("CORS blocked origin:", origin);
+    callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+// ✅ Let cors handle OPTIONS correctly
+app.options("/api/*", cors(corsOptions));
+
+// ✅ Apply CORS ONLY to API routes
+app.use("/api", cors(corsOptions));
+
 
 // ---------- Body & Cookies ----------
 app.use(express.json());
